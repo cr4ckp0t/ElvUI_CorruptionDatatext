@@ -17,6 +17,7 @@ local ToggleFrame = _G["ToggleFrame"]
 
 local enteredFrame = false
 local displayString = ""
+local lastPanel
 local hexColor = ""
 
 local function OnEnter(self)
@@ -67,6 +68,7 @@ local function OnClick(self, button)
 end
 
 local function OnEvent(self, event)
+	lastPanel = self
 	local corruption = GetCorruption();
 	local corruptionResistance = GetCorruptionResistance();
 	local totalCorruption = max(corruption - corruptionResistance, 0);
@@ -76,8 +78,12 @@ end
 local function ValueColorUpdate(hex, r, g, b)
 	displayString = join("", "|cffffffff%s:|r", " ", hex, "%s|r")
 	hexColor = ("%02x%02x%02x"):format(r * 255, g * 255, b * 255) or "ffffff"
+
+	if lastPanel ~= nil then
+		OnEvent(lastPanel, 'ELVUI_COLOR_UPDATE')
+	end
 end
-E["valueColorUpdateFuncs"][ValueColorUpdate] = true
+E.valueColorUpdateFuncs[ValueColorUpdate] = true
 
 P["corruptdt"] = {
 	["display"] = "total",
@@ -88,12 +94,12 @@ local function InjectOptions()
 		E.Options.args.Crackpotx = {
 			type = "group",
 			order = -2,
-			name = L["Plugins by |cff9382c9Crackpotx|r"],
+			name = L["Plugins by |cff0070deCrackpotx|r"],
 			args = {
 				thanks = {
 					type = "description",
 					order = 1,
-					name = L["Thanks for using and supporting my work!  -- |cff9382c9Crackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."],
+					name = L["Thanks for using and supporting my work!  -- |cff0070deCrackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."],
 				},
 			},
 		}
@@ -101,7 +107,7 @@ local function InjectOptions()
 		E.Options.args.Crackpotx.args.thanks = {
 			type = "description",
 			order = 1,
-			name = L["Thanks for using and supporting my work!  -- |cff9382c9Crackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."],
+			name = L["Thanks for using and supporting my work!  -- |cff0070deCrackpotx|r\n\n|cffff0000If you find any bugs, or have any suggestions for any of my addons, please open a ticket at that particular addon's page on CurseForge."],
 		}
 	end
 
