@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI_CorruptionDT By Crackpotx (US, Lightbringer)
+-- ElvUI_CorruptionDT By Crackpot (US, Thrall)
 --------------------------------------------------------------------------------
 local AceLocale = LibStub:GetLibrary("AceLocale-3.0")
 local L = AceLocale:NewLocale("ElvUI_CorruptionDT", "ptBR", false)

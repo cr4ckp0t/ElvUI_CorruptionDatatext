@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- ElvUI Corruption Datatext By Crackpotx (US, Lightbringer)
+-- ElvUI Corruption Datatext By Crackpot (US, Thrall)
 -------------------------------------------------------------------------------
 local E, _, V, P, G = unpack(ElvUI) --Inport: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local L = LibStub("AceLocale-3.0"):GetLocale("ElvUI_CorruptionDT", false)
@@ -132,18 +132,10 @@ function GetItemCorruption(bonuses)
         for i, bonus_id in pairs(bonuses) do
             bonus_id = tostring(bonus_id)
             if ranks[bonus_id] ~= nil then
-                local name, rank, icon, castTime, minRange, maxRange = GetSpellInfo(ranks[bonus_id][3])
-                if ranks[bonus_id][2] ~= "" then
-                    rank = ranks[bonus_id][2]
-                else
-                    rank = ""
-                end
-                if CorruptionTooltips.db.profile.english then
-                    name = ranks[bonus_id][1]
-                    rank = ranks[bonus_id][2]
-                end
+                name = ranks[bonus_id][1]
+                rank = ranks[bonus_id][2]
                 return {
-                    name.." "..rank,
+                    name .. " " .. rank,
                     icon,
                 }
             end
