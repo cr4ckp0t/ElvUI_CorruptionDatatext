@@ -131,11 +131,12 @@ function GetItemCorruption(bonuses)
     if #bonuses > 0 then
         for i, bonus_id in pairs(bonuses) do
             bonus_id = tostring(bonus_id)
-            if ranks[bonus_id] ~= nil then
+			if ranks[bonus_id] ~= nil then
+				local _, _, icon, _, _, _ = GetSpellInfo(ranks[bonus_id][3])
                 name = ranks[bonus_id][1]
                 rank = ranks[bonus_id][2]
                 return {
-                    name .. " " .. rank,
+					("%s%s"):format(ranks[bonus_id][1], ranks[bonus_id][2] == "" and "" or (" %s"):format(ranks[bonus_id][2])),
                     icon,
                 }
             end
@@ -218,7 +219,7 @@ local function OnEnter(self)
 			local breakdown = {}
 			for i = 1, #corruptions do
 				local name = corruptions[i][1]
-                local icon = corruptions[i][2]
+				local icon = corruptions[i][2]
 				local line = ("|T%s:0|t |cff%s%s|r"):format(icon, hexColor, name)
 				
 				-- for multiple instances of corruptions on gear
