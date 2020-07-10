@@ -326,4 +326,4 @@ local function InjectOptions()
 end
 
 EP:RegisterPlugin(..., InjectOptions)
-DT:RegisterDatatext("Corruption", {"PLAYER_ENTERING_WORLD", "COMBAT_RATING_UPDATE", "SPELL_TEXT_UPDATE"}, OnEvent, nil, OnClick, OnEnter, OnLeave)
+DT:RegisterDatatext("Corruption", nil, {"PLAYER_ENTERING_WORLD", "COMBAT_RATING_UPDATE", "SPELL_TEXT_UPDATE"}, OnEvent, nil, OnClick, OnEnter, OnLeave, L["Corruption"])
